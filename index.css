@@ -6,23 +6,27 @@
 }
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #fff;
     height: 100vh;
 }
+.button {
+    padding: 20px 30px;
+    margin-bottom: 35px;
+    border-radius: 8px;
+    cursor: pointer;
+}
 
+/* кнопка с пузырями */
 .button-bubble {
     background-color: #008080;
     position: relative;
-    padding: 20px 30px;
-    border-radius: 8px;
     color: #fff;
     font-size: 20px;
     font-weight: 400;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     border: none;
-    cursor: pointer;
     z-index: 2;
     transition: transform .2s ease;
 }
@@ -85,4 +89,47 @@
         background-position: 70% 70%, 20% 80%, 40% 70%, 0% 80%, 30% 70%, 30% 80%;
         background-size:  0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
     }
+}
+
+/* кнопка с заполнением */
+.button-filling {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    background: none;
+    border: none;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.button_span {
+    position: absolute;
+    left: 0;
+    display: block;
+    overflow: hidden;
+    width: 0;
+    height: 100%;
+    font-size: 40px;
+    backface-visibility: hidden;
+    background-color: #fff;
+    transition:  width .3s;
+}
+
+.button_span::before {
+    content: attr(data-text);
+    position: absolute;
+    right: 0;
+    display: block;
+    width: 100%;
+    color: #008080;
+    backface-visibility: hidden;
+}
+
+.button-filling:hover .button_span {
+    width: 100%;
+    transition:  width .3s;
+}
+
+.button-filling:active {
+    transform: scale(0.96);
 }
